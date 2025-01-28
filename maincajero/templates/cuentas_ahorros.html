@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuentas de Ahorros</title>
+</head>
+<body>
+    <h1>Cuentas de Ahorros</h1>
+    <ul>
+        {% for cuenta in cuentas %}
+            <li>
+                Numero de cuenta: {{ cuenta.cuenta }}
+                <ul>
+                    {% for tarjeta in cuenta.tarjetas.all %}
+                        <li>
+                            <a href="{% url 'seleccionar_tarjeta' tarjeta.id %}">Tarjeta {{ tarjeta.numero_tarjeta }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Volver</a>
+</body>
+</html>

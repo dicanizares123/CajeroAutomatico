@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Seleccionar Tarjeta</title>
+</head>
+<body>
+    <h1>Tarjeta {{ tarjeta.numero_tarjeta }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="pin">PIN:</label>
+        <input type="password" name="pin" id="pin" required>
+        <button type="submit">Ver Saldo</button>
+    </form>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Volver</a>
+</body>
+</html>

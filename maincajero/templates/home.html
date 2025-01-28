@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Principal</title>
+</head>
+<body>
+    <h1>¡Hola, {{ username }}!</h1>
+    <p>Cédula: {{ cedula }}</p>
+    
+    <h2>Selecciona el tipo de cuenta que deseas usar:</h2>
+    <form method="post" action="{% url 'seleccionar_cuenta' %}">
+        {% csrf_token %}
+        <button type="submit" name="tipo_cuenta" value="corriente">Cuenta Corriente</button>
+        <button type="submit" name="tipo_cuenta" value="ahorros">Cuenta de Ahorros</button>
+    </form>
+
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</html>
