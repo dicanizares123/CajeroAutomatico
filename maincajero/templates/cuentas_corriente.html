@@ -1,25 +1,31 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Cuentas Corriente</title>
-</head>
-<body>
-    <h1>Cuentas Corriente</h1>
-    <ul>
+{% extends 'base.html' %}
+{% block CuentasCorriente %}Cuentas Corriente{% endblock %}
+{% block content %}
+
+<div class="atm-containercuentas">
+    <h1 class="title-tarjta">Cuenta Corriente</h1>
+    <p> </p>
+    <p> </p>
+
+    <div class="accounts-list">
         {% for cuenta in cuentas %}
-            <li>
-                Numero de cuenta: {{ cuenta.cuenta }}
-                <ul>
+            <div class="account-card">
+                <h2 class="account-title">Número de cuenta: {{ cuenta.cuenta }}</h2>
+
+                <ul class="card-list">
                     {% for tarjeta in cuenta.tarjetas.all %}
                         <li>
-                            <a href="{% url 'seleccionar_tarjeta' tarjeta.id %}">Tarjeta {{ tarjeta.numero_tarjeta }}</a>
+                            <a class="card-button" href="{% url 'seleccionar_tarjeta' tarjeta.id %}">
+                                Tarjeta {{ tarjeta.primeros_digitos }} **** **** ****
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>
-            </li>
+            </div>
         {% endfor %}
-    </ul>
-    <a href="{% url 'home' %}">Volver</a>
-</body>
-</html>
+    </div>
+    
+    <a href="{% url 'home' %}" class="back-button">Volver</a>
+</div>
+
+{% endblock %}

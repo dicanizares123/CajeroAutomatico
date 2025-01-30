@@ -1,12 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Saldo de la Tarjeta</title>
-</head>
-<body>
-    <h1>Tarjeta {{ tarjeta.numero_tarjeta }}</h1>
-    <p>Saldo: {{ tarjeta.saldo }}</p>
-    <a href="{% url 'home' %}">Volver</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block SaldodelaTarjeta %}Seleccionar Tarjeta{% endblock %}
+{% block content %}
+    <div class="alert alert-success" role="alert">
+        <p class="alert-heading">Tarjeta {{ tarjeta.primeros_digitos }} **** **** ****</p>
+        <hr>
+        <p class="mb-0">Saldo: {{ tarjeta.saldo }}</p>
+    </div>
+
+    <div class="main-container">
+        <!-- Bloque simple -->
+        
+        <!-- Contenedor con imagen e información -->
+        <div class="container">
+            <div class="homecopysimple-block">
+                    {% csrf_token %}
+                    <p> </p> 
+
+                    <button class="btn" onclick="location.href='{% url 'retirar_dinero' tarjeta.id %}'">Retirar Dinero</button>
+                    <p> </p> 
+
+                    <button class="btn" onclick="location.href='{% url 'depositar_dinero' tarjeta.id %}'">Depositar Dinero</button>
+                                   
+            </div>
+            
+            <div class="simple-block">
+                <div class="option"> 
+                    <button class="btn" onclick="location.href='{% url 'home' %}'">Regresar a Home</button>
+
+                </div>
+                <p> </p> 
+                <p> </p> 
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    
+
+{% endblock %}

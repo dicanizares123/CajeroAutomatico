@@ -1,0 +1,417 @@
+/* Reset básico */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+/* Estilo del encabezado */
+.header {
+    background-color: #007bff;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 40%; /* Ajustar a 50% del ancho de la página */
+    max-width: 600px; /* Tamaño máximo opcional */
+}
+
+/* Contenedor */
+
+
+/* Tarjeta */
+.card {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin-top: 40px;
+    margin-left: 250px; /* Mover el bloque un poco a la derecha */
+}
+
+
+.card-img {
+    width: 450px;
+    height: 365px;  
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #10428b;
+}
+
+/* Texto destacado */
+.highlight-text {
+    font-size: 22px;
+    color: #000000;
+    font-weight: bold;
+    transition: visibility 0s, opacity 0.7s linear; /* Añadir transición */
+    opacity: 1;
+
+
+}
+
+.highlight-img {
+    transition: visibility 0s, opacity 0.7s linear; /* Añadir transición */
+    opacity: 1;
+}
+
+/* Botón */
+.btn {
+    margin-top: 15px;
+    background: #ffffff;
+    color: rgb(65, 56, 145);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.btn:hover {
+    background: #ffffff;
+} 
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px; /* Reduce el espacio entre columnas */
+    align-items: center;
+    justify-content: center;
+}
+
+.simple-block {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+    position: relative;
+    left: 400px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    border-bottom: 2px solid #000000; /* Línea separadora */
+
+    text-transform: uppercase; /* Hace que se vea más como un título */
+    margin-bottom: 5px; /* Separa el título del contenido */
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.option {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn {
+    background: #10428b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 90%; /* Hace que el botón se extienda más */
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #082c5a;
+} 
+
+/* Contenedor de la sección de login */
+.login_style {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+    position: relative;
+    left: 630px; /* Ajuste similar a simple-block */
+}
+
+/* Estilo del título dentro de login_style */
+.login_style h1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #10428b;
+    border-bottom: 2px solid #10428b;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo del formulario */
+.login_style form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo de los inputs del formulario */
+.login_style input {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo del botón */
+.login_style button {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 90%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.login_style button:hover {
+    background: #082c5a;
+} 
+
+.highlight-textcopia {
+    font-size: 16px;
+    color: #000000;
+    font-weight: bold;
+    
+} 
+
+.btn {
+    margin-top: 15px;
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+}
+
+
+
+
+.btn:hover {
+    background: #0056b3;
+}
+
+.alert {
+    background-color: rgba(0, 128, 0, 0.1); /* Verde opaco */
+    border: 1px solid rgba(0, 128, 0, 0.3); /* Borde verde opaco */
+    color: #004d00; /* Texto verde oscuro */
+    padding: 5px;
+    border-radius: 5px;
+    margin: 20px auto; /* Centrar el cuadro */
+    width: 30%; /* Ancho fijo */
+    max-width: 600px; /* Tamaño máximo opcional */
+}
+
+.alert-heading {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.alert p {
+    margin: 10px 0;
+}
+
+.alert hr {
+    border-top: 1px solid rgba(0, 128, 0, 0.3);
+}
+
+.alert .mb-0 {
+    margin-bottom: 0;
+} 
+
+.copysimple-block {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+    position: relative;
+    left: 550px;  
+}
+
+.homecopysimple-block {
+    background: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+    position: relative;
+    left: 40px;
+}
+
+/* Contenedor principal simulando un cajero */
+.atm-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 700px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.atm-containercuentas {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 700px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* Estilos para las cuentas */
+.accounts-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.account-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.account-card h2 {
+    font-size: 18px;
+    color: #10428b;
+}
+
+/* Estilo de la lista de tarjetas */
+.card-list {
+    margin-left: 0; /* Elimina márgenes adicionales */
+
+    list-style-type: none;
+    padding: 0;
+}
+
+.card-list li {
+    margin: 10px 0;
+    text-align: left; /* Asegura que los ítems de la lista estén alineados a la izquierda */
+
+}
+
+/* Botón de tarjeta */
+.card-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
+}
+
+/* Botón de volver */
+
+.back-button {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #b02a37;
+}
+
+.title-cuentas {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    text-align: center;
+    display: inline-block; /* Ajusta el ancho al contenido */
+    position: relative;
+}
+
+.title-tarjta {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    text-align: center;
+    display: inline-block; /* Ajusta el ancho al contenido */
+    position: relative;
+}
+
+
+.title-cuentas::after {
+    content: "";
+    display: block;
+    width: 100%; /* Ancho igual al texto */
+    height: 2px;
+    background-color: #000000;
+    margin-top: 5px;
+}
+
+h2 {
+    color: black !important; /* Asegura que el texto sea negro */
+} 
+
+.account-title {
+    color: black !important;
+    font-weight: 400;
+}
+/* css.grid 
+/* css.d-flex

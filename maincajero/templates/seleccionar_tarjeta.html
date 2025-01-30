@@ -1,20 +1,35 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Seleccionar Tarjeta</title>
-</head>
-<body>
-    <h1>Tarjeta {{ tarjeta.numero_tarjeta }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="pin">PIN:</label>
-        <input type="password" name="pin" id="pin" required>
-        <button type="submit">Ver Saldo</button>
-    </form>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <a href="{% url 'home' %}">Volver</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block SeleccionarTarjeta %}Seleccionar Tarjeta{% endblock %}
+{% block content %}
+
+
+<div class="atm-container">
+    <h1 class="title-tarjta" href="{% url 'seleccionar_tarjeta' tarjeta.id %}" > Tarjeta {{ tarjeta.primeros_digitos }} **** **** ****</h1>    
+    <p> </p>
+    <p> </p>
+
+    <div class="accounts-list">
+        <div class="account-card">
+            <h1 class="title-tarjta">PIN</h1>
+
+            <ul class="card-list">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="password" name="pin" id="pin" required>
+                        <p style="color: red;">{{ error }}</p>  
+                    </div>
+                    <button class="btn" type="submit">Ver Saldo</button>
+                </form>
+                {% if error %}
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+    
+    <a href="{% url 'home' %}" class="back-button">Volver</a>
+</div>
+
+ 
+{% endblock %}

@@ -6,6 +6,10 @@ from django.http import HttpResponse
 from .models import CuentaBancaria, Tarjeta, Perfil 
 from django.contrib.auth.models import User
 from .forms import CustomAuthenticationForm
+from decimal import Decimal
+from django.shortcuts import get_object_or_404
+
+
 
 def is_admin(user):
     return user.is_superuser
@@ -22,11 +26,15 @@ def eliminar_usuario(request, user_id):
 @login_required
 def home_view(request):
     user = request.user
-    perfil = Perfil.objects.get(user=user)
+    try:
+        perfil = Perfil.objects.get(user=user)
+    except Perfil.DoesNotExist:
+        perfil = None  # Handle the case where the Perfil does not exist
+
     cuentas = CuentaBancaria.objects.filter(user=user)
     context = {
         'username': user.username,
-        'cedula': perfil.cedula,
+        'cedula': perfil.cedula if perfil else 'N/A',  # Handle missing perfil
         'cuentas': cuentas,
     }
     return render(request, 'home.html', context)
@@ -66,11 +74,12 @@ def seleccionar_cuenta(request):
             return redirect('cuentas_ahorros')
     return redirect('home') 
 
+
 @login_required
 def cuentas_corriente(request):
     user = request.user
     cuentas = CuentaBancaria.objects.filter(user=user, tipo_cuenta='corriente')
-    return render(request, 'cuentas_corriente.html', {'cuentas': cuentas}) 
+    return render(request, 'cuentas_corriente.html', {'cuentas': cuentas})
 
 @login_required
 def cuentas_ahorros(request):
@@ -87,4 +96,44 @@ def seleccionar_tarjeta(request, tarjeta_id):
             return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta})
         else:
             return render(request, 'seleccionar_tarjeta.html', {'tarjeta': tarjeta, 'error': 'PIN incorrecto'})
-    return render(request, 'seleccionar_tarjeta.html', {'tarjeta': tarjeta})
+    return render(request, 'seleccionar_tarjeta.html', {'tarjeta': tarjeta}) 
+
+@login_required
+def mostrar_saldo(request, tarjeta_id):
+    tarjeta = Tarjeta.objects.get(id=tarjeta_id)
+    return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta}) 
+
+@login_required
+def retirar_dinero(request, tarjeta_id):
+    tarjeta = Tarjeta.objects.get(id=tarjeta_id)
+    if request.method == 'POST':
+        monto = float(request.POST['monto'])
+        if monto > tarjeta.saldo:
+            return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta, 'error': 'Saldo insuficiente'})
+        tarjeta.retirar(monto)
+        return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
+    return redirect('home') 
+
+def depositar_dinero(request, tarjeta_id):
+    tarjeta = get_object_or_404(Tarjeta, id=tarjeta_id)
+    if request.method == 'POST':
+        monto = float(request.POST.get('monto'))
+
+        tarjeta.depositar(monto)
+        return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
+    return render(request, 'depositar_dinero.html', {'tarjeta': tarjeta})
+
+def retirar_dinero(request, tarjeta_id):
+    tarjeta = get_object_or_404(Tarjeta, id=tarjeta_id)
+    if request.method == 'POST':
+        monto = float(request.POST.get('monto'))
+        try:
+            tarjeta.retirar(monto)
+        except ValueError as e:
+            # Manejar el error de saldo insuficiente
+            return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta, 'error': str(e)})
+        return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
+    return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta}) 
+
+def welcome_view(request):
+    return render(request, 'welcome.html')

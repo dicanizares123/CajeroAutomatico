@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'Prueba1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'maincajero',
+        'NAME': 'maincajeroclone',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -133,4 +133,9 @@ LOGIN_URL = '/maincajero/login/'
 AUTHENTICATION_BACKENDS = [
     'maincajero.backends.CedulaBackend',
     'django.contrib.auth.backends.ModelBackend',
+] 
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "maincajero/static",
 ]

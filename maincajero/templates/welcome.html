@@ -1,0 +1,70 @@
+<!-- filepath: /c:/Users/Usuario/Desktop/Proyectos/Git/BrechaProyectTest/BaseDeDatosProyect/maincajero/templates/welcome.html -->
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cajero Andalucía</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const textElement = document.querySelector(".highlight-text");
+                const imgElement = document.querySelector(".highlight-img");
+                if (textElement && imgElement) {
+                    setInterval(() => {
+                        textElement.style.opacity = "1";
+                        imgElement.style.opacity = "1";
+                        setTimeout(() => {
+                            textElement.style.opacity = "0";
+                            imgElement.style.opacity = "0";
+                        }, 500); // Tiempo de visibilidad
+                    }, 1000); // Intervalo de tiempo
+                }
+            });
+        </script>
+    </head>
+    <body>
+
+        <!-- Encabezado con logo -->
+        <header class="header">
+            <img src="{% static 'img/logo.png' %}" alt="Logo Andalucía" class="logo">
+        </header>
+
+        <!-- Nuevo Bloque  -->
+        
+        <div class="main-container">
+            <!-- Bloque simple -->
+            
+            <!-- Contenedor con imagen e información -->
+            <div class="container">
+                <div class="copysimple-block">
+                    <img src="{% static 'img/foto.png' %}" alt="Tarjeta" class="card-img highlight-img">
+                    <p class="highlight-text">Por favor, ingrese su tarjeta</p>
+                </div>
+                
+                <div class="simple-block">
+                    <h2 class="title">Operaciones Rápidas</h2>
+                    <div class="option">
+                        <button class="btn" onclick="location.href='{% url 'login' %}'">Transacción sin Tarjeta</button>
+                    </div>
+                    <p> </p>
+                    <div class="option">
+                        <button class="btn" onclick="location.href='#">Convenios</button>
+                    </div> 
+                    <p> </p>
+                    <div class="option">
+                        <button class="btn" onclick="location.href='#">Soporte al cliente</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        
+        
+
+            
+    </body>
+</html>

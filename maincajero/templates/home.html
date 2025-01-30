@@ -1,20 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Página Principal</title>
-</head>
-<body>
-    <h1>¡Hola, {{ username }}!</h1>
-    <p>Cédula: {{ cedula }}</p>
-    
-    <h2>Selecciona el tipo de cuenta que deseas usar:</h2>
-    <form method="post" action="{% url 'seleccionar_cuenta' %}">
-        {% csrf_token %}
-        <button type="submit" name="tipo_cuenta" value="corriente">Cuenta Corriente</button>
-        <button type="submit" name="tipo_cuenta" value="ahorros">Cuenta de Ahorros</button>
-    </form>
+{% extends 'base.html' %}
 
-    <a href="{% url 'logout' %}">Cerrar sesión</a>
-</body>
-</html>
+{% block Home %}Home{% endblock %}
+{% block content %}
+
+    <div class="alert alert-success" role="alert">
+        <p class="alert-heading">¡Hola, {{ username }}!</p>
+        <hr>
+        <p class="mb-0">Cédula: {{ cedula }}</p>
+    </div>
+
+    <div class="main-container">
+        <!-- Bloque simple -->
+        
+        <!-- Contenedor con imagen e información -->
+        <div class="container">
+            <div class="homecopysimple-block">
+                <h2 class="title">Tipo de cuenta</h2>
+                <form method="post" action="{% url 'seleccionar_cuenta' %}">
+                    {% csrf_token %}
+                    <p> </p> 
+
+                    <button class="btn" type="submit" name="tipo_cuenta" value="corriente">Cuenta Corriente</button>
+                    <p> </p> 
+
+                    <button class="btn" type="submit" name="tipo_cuenta" value="ahorros">Cuenta Ahorros</button>
+                    
+                </form>
+                
+            </div>
+            
+            <div class="simple-block">
+                <h2 class="title">Operaciones Rápidas</h2>
+                <div class="option"> 
+                    <button class="btn" onclick="location.href='{% url 'welcome' %}'">Cerrar sesión</button>
+                </div>
+                <p> </p> 
+                <p> </p> 
+                
+                
+            </div>
+        </div>
+    </div>
+    
+   
+
+{% endblock %}
+

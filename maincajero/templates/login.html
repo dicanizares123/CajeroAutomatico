@@ -1,15 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Iniciar Sesión</title>
-</head>
-<body>
-    <h1>Cooperativa Andalucia</h1>
+{% extends 'base.html' %}
+
+{% block Iniciar_Sesion %}Iniciar Sesión{% endblock %}
+{% block content %}
+<div class="login_style">
+    <h1>Transacción Sin Tarjeta</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Ingresar</button>
+        <p> </p>
+        <div class="form-group">
+            <label for="{{ form.cedula.id_for_label }}" class="highlight-textcopia" > Ingresa Cédula</label>
+            {{ form.cedula }}
+        </div>
+        <p> </p>
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}" class="highlight-textcopia" >Codigo de Verificación</label>
+            {{ form.password }}
+        </div>
+        <button class="btn"  type="submit">Ingresar</button>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}
