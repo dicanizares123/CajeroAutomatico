@@ -11,11 +11,10 @@ class Perfil(models.Model):
 
 class CuentaBancaria(models.Model):
     TIPO_CUENTA_CHOICES = [
-        ('corriente', 'Cuenta Corriente'),
-        ('ahorros', 'Cuenta de Ahorros'),
+        ('corriente', 'Corriente'),
+        ('ahorros', 'Ahorros'),
     ]
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     cuenta = models.CharField(max_length=20)
     tipo_cuenta = models.CharField(max_length=10, choices=TIPO_CUENTA_CHOICES)
 
@@ -42,10 +41,9 @@ class Tarjeta(models.Model):
         self.save()
         Transaccion.objects.create(tarjeta=self, tipo='retiro', monto=monto)
 
-
     def depositar(self, monto):
         self.saldo += Decimal(monto)
-        self.save() 
+        self.save()
         Transaccion.objects.create(tarjeta=self, tipo='deposito', monto=monto)
 
 class Transaccion(models.Model):
@@ -61,6 +59,5 @@ class Transaccion(models.Model):
 
     def __str__(self):
         return f'{self.get_tipo_display()} de {self.monto} en {self.tarjeta.numero_tarjeta} el {self.fecha}'
-
     
 

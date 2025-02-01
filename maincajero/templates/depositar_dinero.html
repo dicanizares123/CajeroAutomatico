@@ -74,41 +74,40 @@
                 window.location.href = "{% url 'home' %}";
             }
         }
-</script>
-    <h1>Depositar Dinero</h1>
-    <form id="depositForm" method="post" action="{% url 'depositar_dinero' tarjeta.id %}" onsubmit="return validateAndSubmitForm()">
-        {% csrf_token %}
-        <label for="monto_depositar">Monto a depositar:</label>
-        <input type="number" step="0.01" name="monto" id="monto_depositar" required>
-        <button type="submit">Depositar</button>
-    </form>
+</script> 
+
+
+<body>
+
+    <div class="atm-container">
+        <h1 class="title-tarjta" >Depositar Dinero</h1>    
+        <p> </p>
+        <p> </p>
+    
+        <div class="accounts-list">
+            <div class="account-card">    
+                <ul class="card-list">
+                    <form id="depositForm" method="post" action="{% url 'depositar_dinero' tarjeta.id %}" onsubmit="return validateAndSubmitForm()">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="monto_depositar">Monto a depositar:</label>
+                            <input type="number" step="0.01" name="monto" id="monto_depositar" required>
+                            <button class="btn" type="submit">Depositar</button>
+                        </div>
+                    </form>
+                </ul>
+    
+            </div>
+        </div>
+        
+        <a onclick="location.href='{% url 'mostrar_saldo' tarjeta.id %}'" class="back-button">Cancelar</a>
+    </div>
+    
+
+    
 
     <!-- Botón para regresar a mostrar saldo -->
-    <button onclick="location.href='{% url 'mostrar_saldo' tarjeta.id %}'">Regresar a Mostrar Saldo</button>
 
-    <!-- Modal de confirmación -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal(false)">&times;</span>
-            <p>El monto ajustado es <span id="adjustedMonto"></span>. ¿Está seguro de que desea continuar?</p>
-            <button onclick="closeModal(true)">Sí</button>
-            <button onclick="closeModal(false)">No</button>
-        </div>
-    </div>
-
-    <!-- Modal de recibo -->
-    <div id="receiptModal" class="modal">
-        <div class="modal-content">
-            <p>¿Desea imprimir un comprobante?</p>
-            <button onclick="closeReceiptModal(true)">Sí</button>
-            <button onclick="closeReceiptModal(false)">No</button>
-        </div>
-    </div>
-
-    <!-- Modal de éxito -->
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <p>Transacción exitosa. Retire su comprobante.</p>
-        </div>
-    </div>
+    
+</body>
 {% endblock %}

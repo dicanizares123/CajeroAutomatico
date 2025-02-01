@@ -105,7 +105,6 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #000000;
-    border-bottom: 2px solid #000000; /* Línea separadora */
 
     text-transform: uppercase; /* Hace que se vea más como un título */
     margin-bottom: 5px; /* Separa el título del contenido */
@@ -324,12 +323,13 @@ body {
 
 /* Estilo de la lista de tarjetas */
 .card-list {
-    margin-left: 0; /* Elimina márgenes adicionales */
-
-    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center;
     padding: 0;
+    list-style: none;
 }
-
 .card-list li {
     margin: 10px 0;
     text-align: left; /* Asegura que los ítems de la lista estén alineados a la izquierda */
@@ -343,7 +343,9 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    display: inline-block;
+    display: block; /* Hace que ocupe todo el ancho disponible */
+    width: fit-content; /* Ajusta el ancho al contenido */
+    margin: 0 auto; /* Centra horizontalmente */
     font-weight: bold;
 }
 

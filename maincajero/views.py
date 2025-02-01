@@ -99,41 +99,29 @@ def seleccionar_tarjeta(request, tarjeta_id):
     return render(request, 'seleccionar_tarjeta.html', {'tarjeta': tarjeta}) 
 
 @login_required
-def mostrar_saldo(request, tarjeta_id):
-    tarjeta = Tarjeta.objects.get(id=tarjeta_id)
-    return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta}) 
-
-@login_required
-def retirar_dinero(request, tarjeta_id):
-    tarjeta = Tarjeta.objects.get(id=tarjeta_id)
-    if request.method == 'POST':
-        monto = float(request.POST['monto'])
-        if monto > tarjeta.saldo:
-            return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta, 'error': 'Saldo insuficiente'})
-        tarjeta.retirar(monto)
-        return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
-    return redirect('home') 
-
 def depositar_dinero(request, tarjeta_id):
     tarjeta = get_object_or_404(Tarjeta, id=tarjeta_id)
     if request.method == 'POST':
         monto = float(request.POST.get('monto'))
-
         tarjeta.depositar(monto)
         return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
     return render(request, 'depositar_dinero.html', {'tarjeta': tarjeta})
 
+@login_required
 def retirar_dinero(request, tarjeta_id):
     tarjeta = get_object_or_404(Tarjeta, id=tarjeta_id)
     if request.method == 'POST':
         monto = float(request.POST.get('monto'))
-        try:
+        if tarjeta.saldo >= monto:
             tarjeta.retirar(monto)
-        except ValueError as e:
-            # Manejar el error de saldo insuficiente
-            return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta, 'error': str(e)})
-        return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
-    return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta}) 
+            return redirect('mostrar_saldo', tarjeta_id=tarjeta.id)
+        else:
+            return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta, 'error': 'Saldo insuficiente, intenta otro valor.'})
+    return render(request, 'retirar_dinero.html', {'tarjeta': tarjeta})
 
+@login_required
+def mostrar_saldo(request, tarjeta_id):
+    tarjeta = get_object_or_404(Tarjeta, id=tarjeta_id)
+    return render(request, 'mostrar_saldo.html', {'tarjeta': tarjeta})
 def welcome_view(request):
     return render(request, 'welcome.html')

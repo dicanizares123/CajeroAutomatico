@@ -2,22 +2,31 @@
 {% block CuentasdeAhorros %}Cuentas de Ahorros{% endblock %}
 {% block content %}
     
-    <h1>Cuenta Ahorros</h1>
+<div class="atm-containercuentas">
+    <h1 class="title-tarjta">Cuenta Ahorros</h1>
+    <p> </p>
+    <p> </p>
 
-    <ul>
+    <div class="accounts-list">
         {% for cuenta in cuentas %}
-            <li>
-                Numero de cuenta: {{ cuenta.cuenta }}
-                <ul>
+            <div class="account-card">
+                <h2 class="account-title">Número de cuenta: {{ cuenta.cuenta }}</h2>
+
+                <ul class="card-list">
                     {% for tarjeta in cuenta.tarjetas.all %}
                         <li>
-                            <a href="{% url 'seleccionar_tarjeta' tarjeta.id %}">Tarjeta {{ tarjeta.numero_tarjeta }}</a>
+                            <a class="card-button" href="{% url 'seleccionar_tarjeta' tarjeta.id %}">
+                                Tarjeta {{ tarjeta.primeros_digitos }} **** **** ****
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>
-            </li>
+            </div>
         {% endfor %}
-    </ul>
-    <a href="{% url 'home' %}">Volver</a>
+    </div>
+    
+    <a href="{% url 'home' %}" class="back-button">Volver</a>
+</div>
+
 {% endblock %}
 
